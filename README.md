@@ -1,54 +1,31 @@
-Hello World
-===========
+![Docker Pulls](https://img.shields.io/docker/pulls/muenchdo/hello-name)
+# Hello Name
 
-This is a simple Docker image that just gives http responses on port 8000. It's
-small enough to fit on one floppy disk:
+This is a simple Docker image which extends the awesome [docker-hello-world](https://github.com/crccheck/docker-hello-world) by allowing you to configure who to greet on the index page.
 
-```bash
-$ docker images | grep hell
-REPOSITORY               TAG       IMAGE ID        CREATED          VIRTUAL SIZE
-crccheck/hello-world     latest    2b28c6ad8d1b    4 months ago     1.2MB
-```
+## Sample Usage
 
-I made this initially because there were lots of scenarios where I wanted a
-Docker container that speaks HTTP, but every guide used images that took
-seconds to download. Armed with a tiny Docker image, I could test things in a
-fresh environment in under a second. I like faster feedback loops.
-
-**THANK YOU** to the surprisingly large number of contributors that have made
-this better for everyone over the years.
-
-
-Sample Usage
-------------
-
-### Starting a web server on port 80
+### Starting a web server on port 8000
 
 ```bash
-$ docker run -d --rm --name web-test -p 80:8000 crccheck/hello-world
+$ docker run -d --rm --name hello -p 8000:8000 -e NAME=Stranger muenchdo/hello-name
 ```
 
-You can now interact with this as if it were a dumb web server:
+The server will now greet you with the name you set via the environment variable `NAME`:
 
 ```
 $ curl localhost
 <xmp>
-Hello World
-...snip...
-```
+Hello Stranger
 
-```
-$ curl -I localhost
-HTTP/1.0 200 OK
-```
 
-```
-$ curl -X POST localhost/super/secret
-<HTML><HEAD><TITLE>501 Not Implemented</TITLE></HEAD>
-...snip...
-```
-
-```
-$ curl --write-out %{http_code} --silent --output /dev/null localhost
-200
+                                       ##         .
+                                 ## ## ##        ==
+                              ## ## ## ## ##    ===
+                           /""""""""""""""""\___/ ===
+                      ~~~ {~~ ~~~~ ~~~ ~~~~ ~~ ~ /  ===- ~~~
+                           \______ o          _,/
+                            \      \       _,'
+                             `'--.._\..--''
+</xmp>
 ```
