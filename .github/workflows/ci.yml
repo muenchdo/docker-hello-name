@@ -17,3 +17,5 @@ jobs:
           password: ${{ secrets.CR_PAT }}
           registry: ghcr.io
           repository: muenchdo/hello-name
+          tag_with_ref: true
+          add_git_labels: true
